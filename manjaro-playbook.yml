@@ -18,7 +18,6 @@
       pacman:
         name: "{{ pacman_pkgs }}"
         state: present
-        update_cache: true
       become: yes
     - name: enable docker service
       systemd:
