@@ -1,0 +1,40 @@
+---
+- name: Manage Manjaro Linux Server
+  hosts: manjaro_hosts
+  order: sorted
+  vars:
+    pacman_pkgs:
+      - ansible
+      - docker
+      - docker-compose
+      - noto-fonts-cjk
+  tasks:
+    - name: set timezone
+      timezone:
+        name: "Asia/Tokyo"
+        hwclock: UTC
+      become: yes
+    - name: install packages with pacman
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+        update_cache: true
+      become: yes
+    - name: enable docker service
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+      become: yes
+    - name: clone awx repo
+      git:
+        repo: https://github.com/ansible/awx.git
+        dest: ~/awx
+        clone: yes
+      register: clone_result
+    - name: install awx
+      command: ansible-playbook -i inventory install.yml
+      args:
+        chdir: "~{{ ansible_user }}/awx/installer"
+      become: yes
+      when: clone_result.changed
