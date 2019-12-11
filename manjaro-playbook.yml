@@ -28,6 +28,7 @@
     - name: clone awx repo
       git:
         repo: https://github.com/ansible/awx.git
+        version: 9.0.1
         dest: ~/awx
         clone: yes
       register: clone_result
