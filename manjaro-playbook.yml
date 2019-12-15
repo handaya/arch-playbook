@@ -10,6 +10,7 @@
       - docker
       - docker-compose
       - noto-fonts-cjk
+    awx_version: "9.0.1"
   tasks:
     - name: set timezone
       timezone:
@@ -30,7 +31,7 @@
     - name: clone awx repo
       git:
         repo: https://github.com/ansible/awx.git
-        version: 9.0.1
+        version: "{{ awx_version }}"
         dest: ~/awx
         clone: yes
       register: clone_result
