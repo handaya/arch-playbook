@@ -34,10 +34,10 @@
         version: "{{ awx_version }}"
         dest: ~/awx
         clone: yes
-      register: clone_result
+      register: awx_clone_result
     - name: install awx
       command: ansible-playbook -i inventory install.yml
       args:
         chdir: "~{{ ansible_user }}/awx/installer"
       become: yes
-      when: clone_result.changed
+      when: awx_clone_result.changed
