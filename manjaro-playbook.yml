@@ -11,6 +11,7 @@
       - docker-compose
       - noto-fonts-cjk
     awx_version: "9.0.1"
+    netbox_version: "v2.6.7"
   tasks:
     - name: set timezone
       timezone:
@@ -41,3 +42,18 @@
         chdir: "~{{ ansible_user }}/awx/installer"
       become: yes
       when: awx_clone_result.changed
+    - name: clone netbox repo
+      git:
+        repo: https://github.com/netbox-community/netbox-docker.git
+        dest: ~/netbox-docker
+        clone: yes
+      register: netbox_clone_result
+    - name: pull netbox containers and start
+      docker_service:
+        project_src: "~{{ ansible_user }}/netbox-docker"
+        pull: yes
+        state: present
+      become: yes
+      environment:
+        VERSION: "{{ netbox_version }}"
+      when: netbox_clone_result.changed
