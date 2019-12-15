@@ -49,7 +49,7 @@
         clone: yes
       register: netbox_clone_result
     - name: pull netbox containers and start
-      docker_service:
+      docker_compose:
         project_src: "~{{ ansible_user }}/netbox-docker"
         pull: yes
         state: present
