@@ -47,6 +47,7 @@
         repo: https://github.com/netbox-community/netbox-docker.git
         dest: ~/netbox-docker
         clone: yes
+        force: yes
       register: netbox_clone_result
     - name: fix nginx port as 8080
       replace:
@@ -57,7 +58,6 @@
         before: "postgres:"
         backup: no
       register: netbox_replace_result
-      when: netbox_clone_result.changed
     - name: pull netbox containers and start
       docker_compose:
         project_src: "~{{ ansible_user }}/netbox-docker"
