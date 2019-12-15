@@ -4,6 +4,8 @@
   order: sorted
   vars:
     pacman_pkgs:
+      - adobe-source-han-sans-jp-fonts
+      - adobe-source-han-serif-jp-fonts
       - ansible
       - docker
       - docker-compose
