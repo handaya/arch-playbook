@@ -10,7 +10,7 @@
       - docker
       - docker-compose
       - noto-fonts-cjk
-    awx_version: "9.0.1"
+    awx_version: "9.1.0"
     netbox_version: "v2.6.8"
   tasks:
     - name: set timezone
