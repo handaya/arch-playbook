@@ -2,7 +2,7 @@
 # handlers file for netbox
 - name: restart netbox
   docker_compose:
-    project_src: "~{{ ansible_user }}/netbox-docker"
+    project_src: "{{ ansible_user_dir }}/netbox-docker"
     pull: yes
     state: present
     restarted: yes

@@ -3,13 +3,13 @@
 - name: clone netbox repo
   git:
     repo: "{{ netbox_url }}"
-    dest: ~/netbox-docker
+    dest: "{{ ansible_user_dir }}/netbox-docker"
     clone: yes
     force: yes
   notify: "restart netbox"
 - name: set nginx port as 8080
   replace:
-    path: ~/netbox-docker/docker-compose.yml
+    path: "{{ ansible_user_dir }}/netbox-docker/docker-compose.yml"
     regexp: "- 8080"
     replace: "- 8080:8080"
     after: "ports:"
