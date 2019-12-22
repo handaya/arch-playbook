@@ -4,13 +4,10 @@
   order: sorted
   vars:
     pacman_pkgs:
-      - adobe-source-han-sans-jp-fonts
-      - adobe-source-han-serif-jp-fonts
       - ansible
       - docker
       - docker-compose
       - git
-      - noto-fonts-cjk
   tasks:
     - name: set timezone
       timezone:
@@ -31,6 +28,8 @@
     - name: install awx
       include_role:
         name: awx
+      tags: awx
     - name: install netbox
       include_role:
         name: netbox
+      tags: netbox

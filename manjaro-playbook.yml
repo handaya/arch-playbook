@@ -1,0 +1,21 @@
+---
+- name: Setup Manjaro Linux Server
+  hosts: manjaro_hosts
+  order: sorted
+  vars:
+    pacman_pkgs:
+      - adobe-source-han-sans-jp-fonts
+      - adobe-source-han-serif-jp-fonts
+      - noto-fonts-cjk
+  tasks:
+    - name: install packages with pacman
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+      become: yes
+    - name: update pacman
+      pacman:
+        state: latest
+        upgrade: yes
+        update_cache: yes
+      become: yes
