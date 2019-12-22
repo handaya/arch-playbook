@@ -5,14 +5,17 @@
     repo: "{{ netbox_url }}"
     dest: "{{ ansible_user_dir }}/netbox-docker"
     clone: yes
-    force: yes
-  notify: "restart netbox"
-- name: set nginx port as 8080
-  replace:
-    path: "{{ ansible_user_dir }}/netbox-docker/docker-compose.yml"
-    regexp: "- 8080"
-    replace: "- 8080:8080"
-    after: "ports:"
-    before: "postgres:"
-    backup: no
-  notify: "restart netbox"
+- name: copy docker-compose.override.yml
+  template:
+    src: docker-compose.override.yml.j2
+    dest: "{{ ansible_user_dir }}/netbox-docker/docker-compose.override.yml"
+    backup: yes
+- name: start containers
+  docker_compose:
+    project_src: "{{ ansible_user_dir }}/netbox-docker"
+    pull: yes
+    recreate: smart
+    state: present
+  environment:
+    VERSION: "{{ netbox_version }}"
+  become: yes
