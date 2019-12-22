@@ -1,11 +1,11 @@
 # arch-playbook
 
-Playbooks for installing AWX and netbox-docker on a Manjaro Linux server
+Playbooks for installing [AWX](https://github.com/ansible/awx) and [netbox-docker](https://github.com/netbox-community/netbox-docker) on a Manjaro Linux server
 
 ## Files
 
 * `manjaro-bootstrap.yml`
-  * Playbook for installing [AWX](https://github.com/ansible/awx) and [netbox-docker](https://github.com/netbox-community/netbox-docker) on a Manjaro Linux server
+  * Playbook for installing AWX and netbox-docker on a Manjaro Linux server
 * `manjaro-playbook.yml`
   * Playbook for installing some packages and updating system
 
