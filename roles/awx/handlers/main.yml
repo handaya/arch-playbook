@@ -1,7 +1,7 @@
 ---
 # handlers file for awx
 - name: restart awx
-  docker_service:
+  docker_compose:
     project_src: "/root/.awx/awxcompose"
     restarted: yes
     state: present
