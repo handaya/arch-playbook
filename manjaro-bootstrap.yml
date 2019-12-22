@@ -1,0 +1,36 @@
+---
+- name: Bootstrap Manjaro Linux Server
+  hosts: manjaro_hosts
+  order: sorted
+  vars:
+    pacman_pkgs:
+      - adobe-source-han-sans-jp-fonts
+      - adobe-source-han-serif-jp-fonts
+      - ansible
+      - docker
+      - docker-compose
+      - git
+      - noto-fonts-cjk
+  tasks:
+    - name: set timezone
+      timezone:
+        name: "Asia/Tokyo"
+        hwclock: UTC
+      become: yes
+    - name: install packages with pacman
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+      become: yes
+    - name: enable docker service
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+      become: yes
+    - name: install awx
+      include_role:
+        name: awx
+    - name: install netbox
+      include_role:
+        name: netbox

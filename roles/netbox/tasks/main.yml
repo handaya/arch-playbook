@@ -1,0 +1,17 @@
+---
+# tasks file for netbox
+- name: clone netbox repo
+  git:
+    repo: "{{ netbox_url }}"
+    dest: ~/netbox-docker
+    clone: yes
+  notify: "restart netbox"
+- name: set nginx port as 8080
+  replace:
+    path: ~/netbox-docker/docker-compose.yml
+    regexp: "- 8080"
+    replace: "- 8080:8080"
+    after: "ports:"
+    before: "postgres:"
+    backup: no
+  notify: "restart netbox"

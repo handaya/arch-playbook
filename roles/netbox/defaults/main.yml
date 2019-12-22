@@ -1,0 +1,4 @@
+---
+# defaults file for netbox
+netbox_url: "https://github.com/netbox-community/netbox-docker.git"
+netbox_version: "latest"

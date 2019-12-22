@@ -1,0 +1,11 @@
+---
+# handlers file for netbox
+- name: restart netbox
+  docker_compose:
+    project_src: "~{{ ansible_user }}/netbox-docker"
+    pull: yes
+    state: present
+    restarted: yes
+  environment:
+    VERSION: "{{ netbox_version }}"
+  become: yes
