@@ -5,6 +5,7 @@
     repo: "{{ netbox_url }}"
     dest: ~/netbox-docker
     clone: yes
+    force: yes
   notify: "restart netbox"
 - name: set nginx port as 8080
   replace:
