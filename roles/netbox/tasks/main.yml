@@ -5,12 +5,13 @@
     repo: "{{ netbox_url }}"
     dest: "{{ ansible_user_dir }}/netbox-docker"
     clone: yes
+    version: master
 - name: copy docker-compose.override.yml
   template:
     src: docker-compose.override.yml.j2
     dest: "{{ ansible_user_dir }}/netbox-docker/docker-compose.override.yml"
     backup: yes
-- name: start containers
+- name: start docker containers
   docker_compose:
     project_src: "{{ ansible_user_dir }}/netbox-docker"
     pull: yes
