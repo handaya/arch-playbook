@@ -12,7 +12,7 @@ Playbooks for installing [AWX](https://github.com/ansible/awx) and [netbox-docke
 ## How to use
 
 1. Prepare a Manjaro Linux server
-    * `openssh` package must be installed
+    * `openssh` and `python` packages must be installed
 2. Install [Ansible](https://github.com/ansible/ansible) on local PC
 3. Clone this repo
 4. Create `inventory` with `[manjaro_hosts]` group
