@@ -1,4 +1,4 @@
 ---
 - import_playbook: awx-playbook.yml
-# - import_playbook: netbox-playbook.yml
+- import_playbook: netbox-playbook.yml
 - import_playbook: manjaro-playbook.yml

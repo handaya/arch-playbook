@@ -1,17 +1,16 @@
 ---
 # tasks file for netbox
-- name: clone netbox repo
+- name: clone netbox-docker repo
   git:
-    repo: "{{ netbox_url }}"
+    repo: "https://github.com/netbox-community/netbox-docker.git"
     dest: "{{ ansible_user_dir }}/netbox-docker"
-    clone: yes
-    version: master
+    version: release
 - name: copy docker-compose.override.yml
   template:
     src: docker-compose.override.yml.j2
     dest: "{{ ansible_user_dir }}/netbox-docker/docker-compose.override.yml"
     backup: yes
-- name: start docker containers
+- name: pull latest image & start Netbox containers
   docker_compose:
     project_src: "{{ ansible_user_dir }}/netbox-docker"
     pull: yes

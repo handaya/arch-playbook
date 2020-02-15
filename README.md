@@ -1,13 +1,17 @@
-# arch-playbook
+# home-playbook
 
 Playbooks for installing [AWX](https://github.com/ansible/awx) and [netbox-docker](https://github.com/netbox-community/netbox-docker) on a Manjaro Linux server
 
 ## Files
 
-* `manjaro-bootstrap.yml`
-  * Playbook for installing AWX and netbox-docker on a Manjaro Linux server
+* `awx-playbook.yml`
+  * Playbook for installing AWX
+* `netbox-playbook.yml`
+  * Playbook for installing Netbox
 * `manjaro-playbook.yml`
-  * Playbook for installing some packages and updating system
+  * Playbook for updating/installing packages for Manjaro Linux
+* `site.yml`
+  * Run all playbooks
 
 ## How to use
 
@@ -15,14 +19,27 @@ Playbooks for installing [AWX](https://github.com/ansible/awx) and [netbox-docke
     * `openssh` and `python` packages must be installed
 2. Install [Ansible](https://github.com/ansible/ansible) on local PC
 3. Clone this repo
-4. Create `inventory` with `[manjaro_hosts]` group
+4. Create Ansible inventory file
     ```ini
+    [awx_hosts]
+    manjaro1 ansible_host=192.168.0.1
+
+    [awx_hosts:vars]
+    awx_version="9.2.0"
+
+    [netbox_hosts]
+    manjaro1 ansible_host=192.168.0.1
+
+    [netbox_hosts:vars]
+    netbox_version="v2.7"
+    netbox_nginx_port=8080
+
     [manjaro_hosts]
     manjaro1 ansible_host=192.168.0.1
     ```
-5. Run `manjaro-bootstrap.yml`
+5. Run `site.yml`
     ```console
-    $ ansible-playbook -i inventory manjaro-bootstrap.yml -k -K
+    $ ansible-playbook -i inventory site.yml -k -K
     ```
 
 Once above steps are completed, AWX and netbox-docker are prepared on the Manjaro Linux server.
@@ -31,5 +48,3 @@ Once above steps are completed, AWX and netbox-docker are prepared on the Manjar
   * http://192.168.0.1/
 * netbox-docker
   * http://192.168.0.1:8080/
-
-`manjaro-playbook.yml` can be run locally, but it should be run from AWX which is already prepared.
