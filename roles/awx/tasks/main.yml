@@ -1,16 +1,22 @@
 ---
 # tasks file for awx
-- name: clone awx repo
+- name: enable docker service
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+  become: yes
+- name: clone AWX repo
   git:
     repo: "{{ awx_url }}"
     version: "{{ awx_version }}"
     dest: "{{ ansible_user_dir }}/awx"
     clone: yes
   register: awx_clone_result
-- name: install awx
+- name: install AWX
   command: ansible-playbook -i inventory install.yml
   args:
     chdir: "{{ ansible_user_dir }}/awx/installer"
   become: yes
   when: awx_clone_result.changed|bool
-  notify: "restart awx"
+  notify: "restart AWX"

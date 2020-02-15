@@ -1,0 +1,18 @@
+# Install AWX
+- name: Install AWX
+  hosts: awx_hosts
+  vars:
+    pacman_pkgs:
+      - ansible
+      - docker
+      - docker-compose
+      - git
+  tasks:
+    - name: install packages with pacman
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+      become: yes
+    - name: install AWX
+      import_role:
+        name: awx
