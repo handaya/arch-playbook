@@ -19,3 +19,17 @@
   environment:
     VERSION: "{{ netbox_version }}"
   become: yes
+- name: copy backup script
+  template:
+    src: templates/backup_netbox.sh.j2
+    dest: /usr/local/bin/backup_netbox.sh
+    mode: 0700
+  become: yes
+- name: set daily backup
+  cron:
+    name: backup Netbox DB daily
+    job: "/usr/local/bin/backup_netbox.sh > /tmp/backup_netbox.out 2>&1"
+    hour: "0"
+    minute: "0"
+    state: present
+  become: yes

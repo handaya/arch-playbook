@@ -1,0 +1,6 @@
+#!/bin/sh
+
+OUTPUT_FILE=/mnt/usb_hdd_1/backups/netbox_pg_dump.sql
+
+cd "{{ ansible_user_dir }}/netbox-docker"
+docker-compose exec postgres sh -c 'pg_dump -cU ${POSTGRES_USER} ${POSTGRES_DB}' > ${OUTPUT_FILE}
