@@ -1,4 +1,3 @@
 ---
 # defaults file for awx
-awx_url: "https://github.com/ansible/awx.git"
-awx_version: "latest"
+awx_version: "HEAD"

@@ -8,10 +8,9 @@
   become: yes
 - name: clone AWX repo
   git:
-    repo: "{{ awx_url }}"
-    version: "{{ awx_version }}"
+    repo: "https://github.com/ansible/awx.git"
     dest: "{{ ansible_user_dir }}/awx"
-    clone: yes
+    version: "{{ awx_version }}"
   register: awx_clone_result
 - name: install AWX
   command: ansible-playbook -i inventory install.yml
