@@ -1,21 +1,52 @@
 ---
 - name: Setup Manjaro Linux Server
   hosts: manjaro_hosts
-  order: sorted
   vars:
     pacman_pkgs:
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
+      - git
+      - glances
+      - netdata
       - noto-fonts-cjk
+      - rsnapshot
+      - snapd
+    snap_pkgs:
+      - plexmediaserver
   tasks:
-    - name: install packages with pacman
-      pacman:
-        name: "{{ pacman_pkgs }}"
-        state: present
+    - name: set timezone
+      timezone:
+        name: "Asia/Tokyo"
+        hwclock: UTC
       become: yes
-    - name: update pacman
+    - name: update pacman packages
       pacman:
         state: latest
         upgrade: yes
         update_cache: yes
+      become: yes
+    - name: install pacman packages
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+      become: yes
+    - name: install snap packages
+      snap:
+        name: "{{ snap_pkgs }}"
+        channel: stable
+        classic: no
+        state: present
+      become: yes
+    - name: install pre-commit
+      snap:
+        name: pre-commit
+        channel: stable
+        classic: yes
+        state: present
+      become: yes
+    - name: enable & start netdata
+      systemd:
+        name: netdata.service
+        enabled: yes
+        state: started
       become: yes
