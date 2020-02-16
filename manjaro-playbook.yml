@@ -9,6 +9,7 @@
       - glances
       - netdata
       - noto-fonts-cjk
+      - python-pip
       - rsnapshot
       - snapd
     snap_pkgs:
