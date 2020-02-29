@@ -1,0 +1,7 @@
+version: "3"
+services:
+  pihole:
+    environment:
+      TZ: {{ pi_hole_tz }}
+      WEBPASSWORD: {{ pi_hole_webpassword }}
+      ServerIP: {{ pi_hole_serverip }}

@@ -1,0 +1,17 @@
+# Install Pi-hole
+- name: Install Pi-hole
+  hosts: pi_hole_hosts
+  vars:
+    pacman_pkgs:
+      - docker
+      - docker-compose
+      - git
+  tasks:
+    - name: install packages with pacman
+      pacman:
+        name: "{{ pacman_pkgs }}"
+        state: present
+      become: yes
+    - name: install Pi-hole
+      import_role:
+        name: pi-hole

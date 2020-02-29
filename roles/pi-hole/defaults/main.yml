@@ -1,0 +1,5 @@
+---
+# defaults file for pi-hole
+pi_hole_tz: 'Etc/UTC'
+pi_hole_webpassword: 'random'
+pi_hole_serverip: '192.168.0.1'

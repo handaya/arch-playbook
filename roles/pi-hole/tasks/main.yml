@@ -1,0 +1,18 @@
+---
+# tasks file for pi-hole
+- name: clone repo
+  git:
+    repo: "https://github.com/pi-hole/docker-pi-hole.git"
+    dest: "{{ ansible_user_dir }}/docker-pi-hole"
+- name: copy docker-compose.override.yml
+  template:
+    src: docker-compose.override.yml.j2
+    dest: "{{ ansible_user_dir }}/docker-pi-hole/docker-compose.override.yml"
+    backup: yes
+- name: start containers
+  docker_compose:
+    project_src: "{{ ansible_user_dir }}/docker-pi-hole"
+    pull: yes
+    recreate: smart
+    state: present
+  become: yes
