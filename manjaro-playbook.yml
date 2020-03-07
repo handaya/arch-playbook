@@ -7,6 +7,8 @@
       - adobe-source-han-serif-jp-fonts
       - ansible
       - base-devel
+      - cockpit
+      - cockpit-dashboard
       - firefox
       - fzf
       - git
@@ -19,6 +21,7 @@
       - noto-fonts-cjk
       - ntfs-3g
       - openbsd-netcat
+      - packagekit
       - powerline
       - python-pip
       - rsnapshot
