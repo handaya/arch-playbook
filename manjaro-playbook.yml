@@ -5,13 +5,29 @@
     pacman_pkgs:
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
+      - ansible
+      - base-devel
+      - firefox
+      - fzf
       - git
       - glances
+      - libva-utils
+      - lsd
+      - lsof
+      - mpv
       - netdata
       - noto-fonts-cjk
+      - ntfs-3g
+      - openbsd-netcat
+      - powerline
       - python-pip
       - rsnapshot
       - snapd
+      - squashfuse
+      - syncthing
+      - tmux
+      - vlc
+      - wget
     snap_pkgs:
       - plexmediaserver
   tasks:
