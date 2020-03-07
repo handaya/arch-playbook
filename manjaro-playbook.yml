@@ -7,13 +7,17 @@
       - adobe-source-han-serif-jp-fonts
       - ansible
       - base-devel
+      - bridge-utils
       - cockpit
       - cockpit-dashboard
+      - dnsmasq
+      - ebtables
       - firefox
       - fzf
       - git
       - glances
       - libva-utils
+      - libvirt
       - lsd
       - lsof
       - mpv
@@ -24,6 +28,7 @@
       - packagekit
       - powerline
       - python-pip
+      - qemu
       - rsnapshot
       - snapd
       - squashfuse
