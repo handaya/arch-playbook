@@ -1,5 +1,16 @@
 version: '3.4'
 services:
+  netbox:
+    restart: unless-stopped
+  netbox-worker:
+    restart: unless-stopped
   nginx:
     ports:
     - {{ netbox_nginx_port }}:8080
+    restart: unless-stopped
+  postgres:
+    restart: unless-stopped
+  redis:
+    restart: unless-stopped
+  redis-cache:
+    restart: unless-stopped
